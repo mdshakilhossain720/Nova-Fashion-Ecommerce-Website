@@ -1,71 +1,34 @@
 "use client"
 
 import * as React from "react"
-import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
+import { MotionConfig } from "framer-motion"
 
-function ThemeProvider({
-  children,
-  ...props
-}: React.ComponentProps<typeof NextThemesProvider>) {
-  return (
-    <NextThemesProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      disableTransitionOnChange
-      {...props}
-    >
-      <ThemeHotkey />
-      {children}
-    </NextThemesProvider>
-  )
-}
+import {
+  useCart,
+  useOrders,
+  useTheme,
+  useUi,
+  useWishlist,
+  type Theme,
+} from "@/store"
 
-function isTypingTarget(target: EventTarget | null) {
-  if (!(target instanceof HTMLElement)) {
-    return false
-  }
+/** Runs before first paint so a saved dark theme never flashes light. */
+export const themeInitScript = `try{var t=localStorage.getItem("nova-theme");if(t==="dark"||(!t&&matchMedia("(prefers-color-scheme: dark)").matches))document.documentElement.classList.add("dark")}catch(e){}`
 
-  return (
-    target.isContentEditable ||
-    target.tagName === "INPUT" ||
-    target.tagName === "TEXTAREA" ||
-    target.tagName === "SELECT"
-  )
-}
-
-function ThemeHotkey() {
-  const { resolvedTheme, setTheme } = useTheme()
-
+function ThemeProvider({ children }: { children: React.ReactNode }) {
   React.useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.defaultPrevented || event.repeat) {
-        return
-      }
+    const isDark = document.documentElement.classList.contains("dark")
+    const theme: Theme = isDark ? "dark" : "light"
+    useTheme.setState({ theme })
 
-      if (event.metaKey || event.ctrlKey || event.altKey) {
-        return
-      }
+    Promise.all([
+      useCart.persist.rehydrate(),
+      useWishlist.persist.rehydrate(),
+      useOrders.persist.rehydrate(),
+    ]).finally(() => useUi.getState().setHydrated())
+  }, [])
 
-      if (event.key.toLowerCase() !== "d") {
-        return
-      }
-
-      if (isTypingTarget(event.target)) {
-        return
-      }
-
-      setTheme(resolvedTheme === "dark" ? "light" : "dark")
-    }
-
-    window.addEventListener("keydown", onKeyDown)
-
-    return () => {
-      window.removeEventListener("keydown", onKeyDown)
-    }
-  }, [resolvedTheme, setTheme])
-
-  return null
+  return <MotionConfig reducedMotion="user">{children}</MotionConfig>
 }
 
 export { ThemeProvider }
