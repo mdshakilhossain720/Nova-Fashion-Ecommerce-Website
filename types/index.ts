@@ -65,6 +65,8 @@ export interface BlogPost {
   readMinutes: number
   image: string
   body: string[]
+  /** Shown as the lead story on the journal page. */
+  featured?: boolean
 }
 
 export interface Testimonial {
@@ -73,6 +75,11 @@ export interface Testimonial {
   city: string
   quote: string
   rating: number
+  image?: string
+  /** CSS object-position that keeps the face in a small round crop. */
+  focus?: string
+  /** How far to enlarge the photo so the face fills the avatar. */
+  zoom?: number
 }
 
 export interface Review {

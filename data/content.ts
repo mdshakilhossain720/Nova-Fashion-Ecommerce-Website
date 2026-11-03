@@ -108,6 +108,9 @@ export const testimonials: Testimonial[] = [
     quote:
       "The saree felt far more expensive than it was. The zari work is beautiful, and it arrived in two days, wrapped like a gift.",
     rating: 5,
+    image: "/images/women-street.webp",
+    focus: "46% 24%",
+    zoom: 3,
   },
   {
     id: "t2",
@@ -116,6 +119,9 @@ export const testimonials: Testimonial[] = [
     quote:
       "Finally, a tee that keeps its shape after a dozen washes. I came back and bought it in all three colours.",
     rating: 5,
+    image: "/images/men-street.webp",
+    focus: "50% 45%",
+    zoom: 5,
   },
   {
     id: "t3",
@@ -124,6 +130,9 @@ export const testimonials: Testimonial[] = [
     quote:
       "The attar lasts all day without ever being too much. I get asked what I am wearing almost every time.",
     rating: 4,
+    image: "/images/dress-wrap.webp",
+    focus: "52% 28%",
+    zoom: 3.2,
   },
 ]
 
@@ -270,5 +279,41 @@ export const demoOrders: Order[] = [
     paymentMethod: "Card",
     deliveryMethod: "Standard, inside Dhaka",
     address: "Level 7, Gulshan Avenue, Gulshan 1, Dhaka 1212",
+  },
+]
+
+/* About page figures. These are demo numbers: edit them to match your brand. */
+export const brandStats = [
+  { value: 48000, suffix: "+", label: "Happy customers" },
+  { value: 1200, suffix: "+", label: "Products available" },
+  { value: 95000, suffix: "+", label: "Orders delivered" },
+  { value: 7, suffix: "", label: "Years of experience" },
+]
+
+export const milestones = [
+  {
+    year: "2019",
+    title: "A small studio in Dhaka",
+    text: "NOVA began with twelve tees, one sewing room and a promise to make everyday clothes feel considered.",
+  },
+  {
+    year: "2021",
+    title: "The saree collection",
+    text: "We partnered with weavers in Tangail to bring heritage handlooms to a new generation of wardrobes.",
+  },
+  {
+    year: "2023",
+    title: "Fragrance and home",
+    text: "Alcohol-free attars and a calm home range joined the collection, made in small, careful batches.",
+  },
+  {
+    year: "2025",
+    title: "Delivering nationwide",
+    text: "Cash on delivery reached all 64 districts, with next-day express delivery across Dhaka.",
+  },
+  {
+    year: "2026",
+    title: "A new chapter online",
+    text: "A redesigned store, NOVA Rewards and a style journal, built around the way you actually shop.",
   },
 ]
