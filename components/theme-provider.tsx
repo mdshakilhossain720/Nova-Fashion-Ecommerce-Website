@@ -4,6 +4,7 @@ import * as React from "react"
 import { MotionConfig } from "framer-motion"
 
 import {
+  useAuth,
   useCart,
   useOrders,
   useTheme,
@@ -25,6 +26,7 @@ function ThemeProvider({ children }: { children: React.ReactNode }) {
       useCart.persist.rehydrate(),
       useWishlist.persist.rehydrate(),
       useOrders.persist.rehydrate(),
+      useAuth.persist.rehydrate(),
     ]).finally(() => useUi.getState().setHydrated())
   }, [])
 

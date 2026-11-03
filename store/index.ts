@@ -3,8 +3,9 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
+import { userProfile } from "@/data/content"
 import { PRICE_CEILING, getProductById } from "@/data/products"
-import type { CartItem, Order } from "@/types"
+import type { CartItem, Order, UserProfile } from "@/types"
 
 /* All persisted stores skip automatic hydration. StoreHydrator rehydrates them
    after mount so the first client render matches the server-rendered HTML. */
@@ -134,6 +135,85 @@ export const useOrders = create<OrdersState>()(
       place: (order) => set((state) => ({ placed: [order, ...state.placed] })),
     }),
     { name: "nova-orders", skipHydration: true }
+  )
+)
+
+export type Address = UserProfile["addresses"][number]
+
+export type ProfileDetails = Pick<
+  UserProfile,
+  "firstName" | "lastName" | "email" | "phone"
+>
+
+/* Demo auth: nothing leaves the browser. Signing in loads the sample profile
+   under the entered email; registering starts a fresh profile. */
+interface AuthState {
+  user: UserProfile | null
+  signIn: (email: string) => void
+  register: (details: ProfileDetails) => void
+  signOut: () => void
+  updateProfile: (details: ProfileDetails) => void
+  addAddress: (address: Omit<Address, "id" | "isDefault">) => void
+  removeAddress: (id: string) => void
+  setDefaultAddress: (id: string) => void
+}
+
+const withUser = (
+  state: AuthState,
+  update: (user: UserProfile) => Partial<UserProfile>
+) => (state.user ? { user: { ...state.user, ...update(state.user) } } : {})
+
+export const useAuth = create<AuthState>()(
+  persist(
+    (set) => ({
+      user: null,
+      signIn: (email) => set({ user: { ...userProfile, email } }),
+      register: (details) =>
+        set({
+          user: {
+            ...details,
+            memberSince: String(new Date().getFullYear()),
+            points: 200,
+            addresses: [],
+          },
+        }),
+      signOut: () => set({ user: null }),
+      updateProfile: (details) => set((state) => withUser(state, () => details)),
+      addAddress: (address) =>
+        set((state) =>
+          withUser(state, (user) => ({
+            addresses: [
+              ...user.addresses,
+              {
+                ...address,
+                id: `a${Date.now()}`,
+                isDefault: user.addresses.length === 0,
+              },
+            ],
+          }))
+        ),
+      removeAddress: (id) =>
+        set((state) =>
+          withUser(state, (user) => {
+            const rest = user.addresses.filter((a) => a.id !== id)
+            // Keep one default whenever any address remains.
+            if (rest.length && !rest.some((a) => a.isDefault)) {
+              rest[0] = { ...rest[0], isDefault: true }
+            }
+            return { addresses: rest }
+          })
+        ),
+      setDefaultAddress: (id) =>
+        set((state) =>
+          withUser(state, (user) => ({
+            addresses: user.addresses.map((a) => ({
+              ...a,
+              isDefault: a.id === id,
+            })),
+          }))
+        ),
+    }),
+    { name: "nova-auth", skipHydration: true }
   )
 )
 
