@@ -238,7 +238,13 @@ export const demoOrders: Order[] = [
     date: "2026-10-21",
     status: "Shipped",
     lines: [
-      { productId: "p3", size: "One Size", color: "Red", quantity: 1, price: 2490 },
+      {
+        productId: "p3",
+        size: "One Size",
+        color: "Red",
+        quantity: 1,
+        price: 2490,
+      },
       { productId: "p7", size: "12ml", color: "Sand", quantity: 2, price: 650 },
     ],
     subtotal: 3790,
@@ -269,8 +275,20 @@ export const demoOrders: Order[] = [
     date: "2026-06-14",
     status: "Delivered",
     lines: [
-      { productId: "p8", size: "One Size", color: "Navy", quantity: 1, price: 1850 },
-      { productId: "p9", size: "One Size", color: "Sand", quantity: 1, price: 890 },
+      {
+        productId: "p8",
+        size: "One Size",
+        color: "Navy",
+        quantity: 1,
+        price: 1850,
+      },
+      {
+        productId: "p9",
+        size: "One Size",
+        color: "Sand",
+        quantity: 1,
+        price: 890,
+      },
     ],
     subtotal: 2740,
     shipping: 0,
@@ -315,5 +333,32 @@ export const milestones = [
     year: "2026",
     title: "A new chapter online",
     text: "A redesigned store, NOVA Rewards and a style journal, built around the way you actually shop.",
+  },
+]
+
+export const team = [
+  {
+    name: "Maliha Sultana",
+    role: "Founder & Creative Director",
+    image: "/images/women-street.webp",
+    focus: "50% 20%",
+  },
+  {
+    name: "Tahmid Karim",
+    role: "Head of Fragrance",
+    image: "/images/men-suit.webp",
+    focus: "50% 18%",
+  },
+  {
+    name: "Rumana Ahmed",
+    role: "Home & Travel Buyer",
+    image: "/images/dress-wrap.webp",
+    focus: "50% 20%",
+  },
+  {
+    name: "Arif Chowdhury",
+    role: "Head of Customer Care",
+    image: "/images/men-navy.webp",
+    focus: "50% 18%",
   },
 ]

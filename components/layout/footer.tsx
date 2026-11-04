@@ -38,6 +38,7 @@ const columns = [
       { label: "About", href: "/about" },
       { label: "Blog & Style Journal", href: "/blog" },
       { label: "Wishlist", href: "/wishlist" },
+      { label: "Privacy Policy", href: "/privacy" },
     ],
   },
 ]

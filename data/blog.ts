@@ -10,6 +10,7 @@ export const blogPosts: BlogPost[] = [
     author: "Maliha Sultana",
     date: "2026-10-12",
     readMinutes: 5,
+    featured: true,
     image: "/images/saree-gold.webp",
     body: [
       "A saree never really goes out of fashion, but the way we wear it keeps changing. The most striking looks this season are the simplest: one beautiful weave, and very little competing with it.",
@@ -66,6 +67,75 @@ export const blogPosts: BlogPost[] = [
       "Texture does the work that colour usually would. Pair a coarse knit with soft cotton, or raw denim with a fine shirt.",
     ],
   },
+  {
+    slug: "a-calmer-living-room",
+    title: "Five Small Changes for a Calmer Living Room",
+    excerpt:
+      "Soft textiles, warm light and fewer, better objects turn a busy room into somewhere you want to stay.",
+    category: "Home",
+    author: "Rumana Ahmed",
+    date: "2026-08-04",
+    readMinutes: 4,
+    image: "/images/home-living.webp",
+    body: [
+      "A calm room starts with clearing surfaces. Keep out only what you use every day or truly love to look at, and give everything else a home.",
+      "Swap one bright overhead light for two or three lamps at different heights. Warm, low light changes the mood of a room more than any new furniture.",
+      "Finally, layer textiles. A handloom throw and a couple of linen cushions add softness without adding clutter.",
+    ],
+  },
+  {
+    slug: "how-to-care-for-denim",
+    title: "How to Care for Denim So It Lasts for Years",
+    excerpt:
+      "Wash less, wash cold and dry flat: the simple routine that keeps colour deep and seams strong.",
+    category: "Care Guide",
+    author: "Tahmid Karim",
+    date: "2026-07-18",
+    readMinutes: 5,
+    image: "/images/denim-stack.webp",
+    body: [
+      "Good denim rarely needs washing. Airing it overnight and spot-cleaning small marks keeps it fresh for weeks between washes.",
+      "When it does need a wash, turn it inside out, use cold water and a gentle detergent, and skip the tumble dryer completely.",
+      "Dry it flat or hang it by the waistband in the shade. Direct sun fades indigo far faster than you would expect.",
+    ],
+  },
+  {
+    slug: "training-in-the-humidity",
+    title: "What to Wear When Training in the Humidity",
+    excerpt:
+      "Quick-dry fabrics, the right fit and a few habits that make hard sessions in Dhaka's monsoon far easier.",
+    category: "Sport",
+    author: "Imran Hossain",
+    date: "2026-06-30",
+    readMinutes: 6,
+    image: "/images/sport-class.webp",
+    body: [
+      "In humid weather, cotton holds sweat and gets heavy. A lightweight, quick-dry knit moves moisture away from the skin so you stay cooler for longer.",
+      "Fit matters as much as fabric. A slightly relaxed top lets air move, while a closer fit on leggings or shorts stops chafing on longer runs.",
+      "Train early or late when you can, keep water close, and rinse your kit after every session so it stays fresh.",
+    ],
+  },
+  {
+    slug: "dressing-kids-for-eid",
+    title: "Dressing Kids for Eid: Comfort First",
+    excerpt:
+      "Festive pieces children will actually keep on, from soft cotton panjabis to easy, twirl-ready dresses.",
+    category: "Style",
+    author: "Maliha Sultana",
+    date: "2026-06-02",
+    readMinutes: 3,
+    image: "/images/kids-flat.webp",
+    body: [
+      "The best Eid outfit for a child is one they forget they are wearing. Choose soft, breathable cotton over stiff or scratchy embellishment.",
+      "Look for easy fastenings and a little room to grow, so the outfit lasts through a long day of visiting family.",
+      "Pack a simple change of clothes. Festive food and excited cousins rarely mix well with a white panjabi.",
+    ],
+  },
+]
+
+export const blogCategories = [
+  "All",
+  ...new Set(blogPosts.map((post) => post.category)),
 ]
 
 export const getPost = (slug: string) =>

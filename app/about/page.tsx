@@ -17,7 +17,7 @@ import { StatCounter } from "@/components/about/stat-counter"
 import { SectionHeading, Stars } from "@/components/common/bits"
 import { SmartImage } from "@/components/common/smart-image"
 import { buttonVariants } from "@/components/ui/button"
-import { brandStats, milestones, testimonials } from "@/data/content"
+import { brandStats, milestones, team, testimonials } from "@/data/content"
 import { cn } from "@/lib/utils"
 
 export const metadata: Metadata = {
@@ -101,7 +101,10 @@ export default function AboutPage() {
             More than shopping, it&apos;s an experience.
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <Link href="/shop" className={buttonVariants({ size: "cta", variant: "gold" })}>
+            <Link
+              href="/shop"
+              className={buttonVariants({ size: "cta", variant: "gold" })}
+            >
               Explore Collection
               <ArrowRight aria-hidden />
             </Link>
@@ -128,9 +131,11 @@ export default function AboutPage() {
                 sizes="(min-width: 1024px) 50vw, 100vw"
               />
             </div>
-            <div className="absolute -bottom-6 left-4 rounded-sm bg-background p-5 shadow-lg sm:left-auto sm:-right-6 lg:p-6">
+            <div className="absolute -bottom-6 left-4 rounded-sm bg-background p-5 shadow-lg sm:-right-6 sm:left-auto lg:p-6">
               <p className="font-heading text-4xl text-gold-ink">2019</p>
-              <p className="mt-1 text-sm text-muted-foreground">Founded in Dhaka</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Founded in Dhaka
+              </p>
             </div>
           </div>
           <div className="pt-6 lg:pt-0">
@@ -144,8 +149,8 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground lg:text-lg">
               <p>
                 NOVA started in a small Dhaka studio with a simple idea: the
-                clothes you wear every day deserve the same care as the ones
-                you save for special occasions.
+                clothes you wear every day deserve the same care as the ones you
+                save for special occasions.
               </p>
               <p>
                 We design in-house, choose natural fabrics and work closely with
@@ -167,7 +172,10 @@ export default function AboutPage() {
                 "Fairly paid local makers",
               ].map((point) => (
                 <li key={point} className="flex items-center gap-2.5 text-sm">
-                  <BadgeCheck className="size-4 shrink-0 text-gold-ink" aria-hidden />
+                  <BadgeCheck
+                    className="size-4 shrink-0 text-gold-ink"
+                    aria-hidden
+                  />
                   {point}
                 </li>
               ))}
@@ -176,7 +184,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-label="Mission, vision and values" className="bg-surface py-14 lg:py-24">
+      <section
+        aria-label="Mission, vision and values"
+        className="bg-surface py-14 lg:py-24"
+      >
         <div className="page-gutter">
           <SectionHeading
             eyebrow="What drives us"
@@ -195,7 +206,9 @@ export default function AboutPage() {
                   <Icon className="size-5 text-gold-ink" aria-hidden />
                 </span>
                 <h3 className="mt-6 font-heading text-2xl">{title}</h3>
-                <p className="mt-3 leading-relaxed text-muted-foreground">{text}</p>
+                <p className="mt-3 leading-relaxed text-muted-foreground">
+                  {text}
+                </p>
               </li>
             ))}
           </ul>
@@ -220,14 +233,19 @@ export default function AboutPage() {
                   aria-hidden
                 />
                 <h3 className="mt-5 font-heading text-xl">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {text}
+                </p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section aria-label="NOVA in numbers" className="bg-[#171717] text-[#f5f4f1]">
+      <section
+        aria-label="NOVA in numbers"
+        className="bg-[#171717] text-[#f5f4f1]"
+      >
         <div className="page-gutter py-14 lg:py-20">
           <dl className="grid grid-cols-2 gap-y-10 lg:grid-cols-4">
             {brandStats.map((stat) => (
@@ -282,7 +300,9 @@ export default function AboutPage() {
                   <p className="font-heading text-3xl text-gold-ink lg:text-4xl">
                     {milestone.year}
                   </p>
-                  <h3 className="mt-2 text-lg font-medium">{milestone.title}</h3>
+                  <h3 className="mt-2 text-lg font-medium">
+                    {milestone.title}
+                  </h3>
                   <p className="mt-2 leading-relaxed text-muted-foreground">
                     {milestone.text}
                   </p>
@@ -293,13 +313,47 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-label="Customer testimonials" className="bg-surface py-14 lg:py-24">
+      <section aria-label="Our team" className="bg-surface py-14 lg:py-24">
         <div className="page-gutter">
-          <SectionHeading eyebrow="In their words" title="What Our Customers Say" />
+          <SectionHeading
+            eyebrow="The people behind NOVA"
+            title="Meet Our Team"
+            description="A small, close-knit team of designers, buyers and carers who look after every detail."
+          />
+          <ul className="grid grid-cols-2 gap-x-4 gap-y-8 lg:grid-cols-4 lg:gap-x-6">
+            {team.map((member) => (
+              <li key={member.name} className="group">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-muted">
+                  <SmartImage
+                    src={member.image}
+                    alt={`Portrait of ${member.name}`}
+                    sizes="(min-width: 1024px) 25vw, 50vw"
+                    style={{ objectPosition: member.focus }}
+                    className="grayscale-[35%] transition-[transform,filter] duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                  />
+                </div>
+                <h3 className="mt-4 font-heading text-xl lg:text-2xl">
+                  {member.name}
+                </h3>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {member.role}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section aria-label="Customer testimonials" className="py-14 lg:py-24">
+        <div className="page-gutter">
+          <SectionHeading
+            eyebrow="In their words"
+            title="What Our Customers Say"
+          />
           <ul className="grid gap-4 md:grid-cols-3 lg:gap-5">
             {testimonials.map((item) => (
               <li key={item.id}>
-                <figure className="flex h-full flex-col rounded-sm bg-background p-7 transition-shadow hover:shadow-lg lg:p-8">
+                <figure className="flex h-full flex-col rounded-sm bg-surface p-7 transition-shadow hover:shadow-lg lg:p-8">
                   <Stars value={item.rating} />
                   <blockquote className="mt-5 flex-1 font-heading text-xl leading-relaxed">
                     “{item.quote}”
@@ -337,7 +391,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section aria-labelledby="cta-title" className="relative isolate overflow-hidden text-white">
+      <section
+        aria-labelledby="cta-title"
+        className="relative isolate overflow-hidden text-white"
+      >
         <SmartImage
           src="/images/rack-neutral.webp"
           alt=""
@@ -362,7 +419,10 @@ export default function AboutPage() {
           </p>
           <Link
             href="/shop"
-            className={cn(buttonVariants({ size: "cta", variant: "light" }), "mt-9")}
+            className={cn(
+              buttonVariants({ size: "cta", variant: "light" }),
+              "mt-9"
+            )}
           >
             Shop Now
             <ArrowRight aria-hidden />
